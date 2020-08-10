@@ -1,7 +1,92 @@
-﻿<div class="p-4">
+﻿<!-- <div class="p-4">
     <div class="container">
-        <h1>Hi {{user.firstName}}!</h1>
+        
         <p>You're logged in with Angular 9!!</p>
         <p><a routerLink="/users">Manage Users</a></p>
+    </div>
+</div> -->
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #182C61;">
+    <a class="navbar-brand" href="#">Dashboard</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/users">Manage Users</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" (click)="logoutUser()" type="submit">Logout</button>
+        </form>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <h1 class="mt-2">Hi {{user.firstName? user.firstName : 'Admin'}}!</h1>
+    <div class="admin-cards" fxLayout="row" fxLayoutGap="10px">
+        <mat-card class="total-card">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>Total Consultants</mat-card-title>
+                <!-- <mat-card-subtitle>IT</mat-card-subtitle> -->
+            </mat-card-header>
+            <mat-card-content fxLayout="row" fxLayoutAlign="center center">
+                <h3>20</h3>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button>LIKE</button>
+                <button mat-button>SHARE</button>
+            </mat-card-actions>
+        </mat-card>
+        <mat-card class="total-card">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>Total Consultants</mat-card-title>
+                <!-- <mat-card-subtitle>IT</mat-card-subtitle> -->
+            </mat-card-header>
+            <mat-card-content fxLayout="row" fxLayoutAlign="center center">
+                <h3>20</h3>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button>LIKE</button>
+                <button mat-button>SHARE</button>
+            </mat-card-actions>
+        </mat-card>
+        <mat-card class="total-card">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>Total Consultants</mat-card-title>
+                <!-- <mat-card-subtitle>IT</mat-card-subtitle> -->
+            </mat-card-header>
+            <mat-card-content fxLayout="row" fxLayoutAlign="center center">
+                <h3>20</h3>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button>LIKE</button>
+                <button mat-button>SHARE</button>
+            </mat-card-actions>
+        </mat-card>
+        <mat-card class="total-card">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>Total Consultants</mat-card-title>
+                <!-- <mat-card-subtitle>IT</mat-card-subtitle> -->
+            </mat-card-header>
+            <mat-card-content fxLayout="row" fxLayoutAlign="center center">
+                <h3>20</h3>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button>LIKE</button>
+                <button mat-button>SHARE</button>
+            </mat-card-actions>
+        </mat-card>
     </div>
 </div>

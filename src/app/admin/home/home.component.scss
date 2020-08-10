@@ -1,0 +1,9 @@
+.admin-cards {
+  padding: 20px;
+
+  .total-card {
+    width: 300px;
+    background: #4ac29a; /* fallback for old browsers */
+    background: linear-gradient(to left, #d4f9f4, #79ceb2fa);
+  }
+}
