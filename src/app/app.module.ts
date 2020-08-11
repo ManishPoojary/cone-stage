@@ -8,7 +8,6 @@ import { AdminModule } from './admin/admin.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { fakeBackendProvider } from './admin/helpers';
 import { JwtInterceptor, ErrorInterceptor } from './admin/helpers';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -19,7 +18,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserAnimationsModule,
     AdminModule,
     HttpClientModule,
-    FlexLayoutModule,
     NgbModule
   ],
   providers: [

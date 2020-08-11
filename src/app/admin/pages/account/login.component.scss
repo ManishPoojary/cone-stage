@@ -1,17 +1,22 @@
 .example-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-  }
-  
-  .example-full-width {
-    width: 100%;
-  }
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
 
-  .example-spacer {
-    flex: 1 1 auto;
-  }
+.example-full-width {
+  width: 100%;
+}
 
-  .login-card{
-    margin-top: 5%;
-  }
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.login-card {
+  margin-top: 5%;
+}
+
+.card-header {
+  background-color: #7ee8fa;
+  background-image: linear-gradient(315deg, #7ee8fa 0%, #80ff72 74%);
+}
