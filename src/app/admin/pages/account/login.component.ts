@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
-import { AccountService, AlertService } from '../../admin/services';
+import { HttpService, AlertService } from '../../../admin/services';
 
 @Component({
   templateUrl: './login.component.html',
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private accountService: AccountService,
+    private httpService: HttpService,
     private alertService: AlertService
   ) {}
 
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.loading = true;
-    this.accountService
+    this.httpService
       .login(this.form.value)
       .pipe(first())
       .subscribe(

@@ -10,7 +10,7 @@ import { User } from '../models';
 @Injectable({
   providedIn: 'root',
 })
-export class AccountService {
+export class HttpService {
   private userSubject: BehaviorSubject<User>;
   public user: Observable<User>;
 
@@ -53,7 +53,7 @@ export class AccountService {
   }
 
   getAll() {
-    return this.http.get<User[]>(`${environment.apiUrl}/users`);
+    return this.http.get<User[]>(`${environment.apiUrl}/consultant`);
   }
 
   getById(id: string) {
@@ -87,5 +87,9 @@ export class AccountService {
         return x;
       })
     );
+  }
+
+  getAnalytics(){
+    return this.http.get<User>(`${environment.apiUrl}/basic_analytics`); 
   }
 }

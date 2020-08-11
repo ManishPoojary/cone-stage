@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
-import { AccountService, AlertService } from '../../admin/services';
+import { HttpService, AlertService } from '../../../admin/services';
 
 @Component({ templateUrl: 'add-edit.component.html' })
 export class AddEditComponent implements OnInit {
@@ -17,7 +17,7 @@ export class AddEditComponent implements OnInit {
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
-        private accountService: AccountService,
+        private httpService: HttpService,
         private alertService: AlertService
     ) {}
 
@@ -39,7 +39,7 @@ export class AddEditComponent implements OnInit {
         });
 
         if (!this.isAddMode) {
-            this.accountService.getById(this.id)
+            this.httpService.getById(this.id)
                 .pipe(first())
                 .subscribe(x => {
                     this.f.firstName.setValue(x.firstName);
@@ -72,7 +72,7 @@ export class AddEditComponent implements OnInit {
     }
 
     private createUser() {
-        this.accountService.register(this.form.value)
+        this.httpService.register(this.form.value)
             .pipe(first())
             .subscribe(
                 data => {
@@ -86,7 +86,7 @@ export class AddEditComponent implements OnInit {
     }
 
     private updateUser() {
-        this.accountService.update(this.id, this.form.value)
+        this.httpService.update(this.id, this.form.value)
             .pipe(first())
             .subscribe(
                 data => {
