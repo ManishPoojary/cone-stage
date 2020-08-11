@@ -29,7 +29,7 @@ export class HttpService {
     console.log(value);
 
     return this.http
-      .post<User>(`${environment.apiUrl}/api/v1/auth_user`, value)
+      .post<User>(`${environment.apiUrl}/auth_user`, value)
       .pipe(
         map((user) => {
           // store user details and jwt token in local storage to keep user logged in between page refreshes

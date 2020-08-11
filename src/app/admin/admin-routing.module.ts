@@ -8,7 +8,7 @@ const accountModule = () => import('./pages/account/account.module').then(x => x
 const usersModule = () => import('./pages/users/users.module').then(x => x.UsersModule);
 
 const routes: Routes = [
-  { path: 'admin', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'users', loadChildren: usersModule, canActivate: [AuthGuard] },
   { path: 'account', loadChildren: accountModule },
 
