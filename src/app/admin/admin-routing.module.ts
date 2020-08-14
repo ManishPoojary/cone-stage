@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'consultants', loadChildren: usersModule, canActivate: [AuthGuard] },
   { path: 'account', loadChildren: accountModule },
+  { path: 'category-type', loadChildren: () => import('./pages/category-type/category-type.module').then(m => m.CategoryTypeModule) },
 
   // otherwise redirect to home
   { path: '**', redirectTo: 'home' }

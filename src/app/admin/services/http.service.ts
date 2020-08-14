@@ -1,11 +1,12 @@
 ﻿import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
 import { User } from '../models';
+import { CategoryTypes } from '@app/admin/models';
 
 @Injectable({
   providedIn: 'root',
@@ -28,17 +29,15 @@ export class HttpService {
   login(value) {
     console.log(value);
 
-    return this.http
-      .post<User>(`${environment.apiUrl}/auth_user`, value)
-      .pipe(
-        map((user) => {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('user', JSON.stringify(user));
-          this.userSubject.next(user);
-          return user;
-          console.log(user);
-        })
-      );
+    return this.http.post<User>(`${environment.apiUrl}/auth_user`, value).pipe(
+      map((user) => {
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        localStorage.setItem('user', JSON.stringify(user));
+        this.userSubject.next(user);
+        return user;
+        console.log(user);
+      })
+    );
   }
 
   logout() {
@@ -89,7 +88,62 @@ export class HttpService {
     );
   }
 
-  getAnalytics(){
-    return this.http.get<User>(`${environment.apiUrl}/basic_analytics`); 
+  getAnalytics() {
+    return this.http.get<User>(`${environment.apiUrl}/basic_analytics`);
+  }
+
+  getAllCategoryTypes() {
+    return this.http.get<CategoryTypes[]>(
+      `${environment.apiUrl}/category_types`
+    );
+  }
+
+  categoryTypeCreate(CategoryTypes: CategoryTypes) {
+    return this.http.post(
+      `${environment.apiUrl}/category_types`,
+      CategoryTypes
+    );
+  }
+
+  categoryTypeUpdate(id, params) {
+    return this.http
+      .patch(`${environment.apiUrl}/category_types/${id}`, params)
+      .pipe(
+        map((x) => {
+          // update stored user if the logged in user updated their own record
+          if (id == this.userValue.id) {
+            // update local storage
+            const user = { ...this.userValue, ...params };
+            localStorage.setItem('user', JSON.stringify(user));
+
+            // publish updated user to subscribers
+            this.userSubject.next(user);
+          }
+          return x;
+        })
+      );
+  }
+
+  deleteCategoryType(id) {
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: id,
+    };
+
+    return this.http.delete(`${environment.apiUrl}/category_types`, options);
+  }
+
+  getCategoryById(id) {
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: { id: 'asdas' },
+    };
+    console.log(id);
+
+    return this.http.get(`${environment.apiUrl}/category_types/edit`, options);
   }
 }

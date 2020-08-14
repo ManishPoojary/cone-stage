@@ -5,12 +5,9 @@ import { AdminComponent } from './admin.component';
 import { AlertComponent } from './components';
 import { HomeComponent } from './pages/home';
 
-
 @NgModule({
   declarations: [AdminComponent, AlertComponent, HomeComponent],
-  imports: [
-    CommonModule,
-    AdminRoutingModule,
-  ],
+  imports: [CommonModule, AdminRoutingModule],
+  exports: [AlertComponent],
 })
 export class AdminModule {}
