@@ -39,12 +39,13 @@ export class CategoryTypeAddEditComponent implements OnInit {
     });
 
     if (!this.isAddMode) {
-      let apiData = { id: this.id };
       this.httpService
-        .getCategoryById(apiData)
+        .getCategoryById(this.id)
         .pipe(first())
-        .subscribe((x:any) => {
-          this.f.firstName.setValue(x.name);
+        .subscribe((x: any) => {
+          console.log(x.category_type);
+
+          this.f.name.setValue(x.category_type.name);
         });
     }
   }
@@ -93,8 +94,12 @@ export class CategoryTypeAddEditComponent implements OnInit {
   }
 
   private updateUser() {
+    let params = {
+      id: this.id,
+      ...this.form.value,
+    };
     this.httpService
-      .categoryTypeUpdate(this.id, this.form.value)
+      .categoryTypeUpdate(this.id, params)
       .pipe(first())
       .subscribe(
         (data) => {

@@ -107,7 +107,7 @@ export class HttpService {
 
   categoryTypeUpdate(id, params) {
     return this.http
-      .patch(`${environment.apiUrl}/category_types/${id}`, params)
+      .put(`${environment.apiUrl}/category_types/${id}`, params)
       .pipe(
         map((x) => {
           // update stored user if the logged in user updated their own record
@@ -135,15 +135,7 @@ export class HttpService {
     return this.http.delete(`${environment.apiUrl}/category_types`, options);
   }
 
-  getCategoryById(id) {
-    const options = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
-      body: { id: 'asdas' },
-    };
-    console.log(id);
-
-    return this.http.get(`${environment.apiUrl}/category_types/edit`, options);
+  getCategoryById(id:string) {
+    return this.http.get(`${environment.apiUrl}/category_types/${id}`);
   }
 }
