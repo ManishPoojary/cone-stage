@@ -5,7 +5,7 @@ import { CategoryTypeRoutingModule } from './category-type-routing.module';
 import { CategoryTypeComponent } from './category-type.component';
 import { CategoryTypeListComponent } from './category-type-list/category-type-list.component';
 import { CategoryTypeAddEditComponent } from './category-type-add-edit/category-type-add-edit.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    FormsModule,      
     CategoryTypeRoutingModule
   ]
 })

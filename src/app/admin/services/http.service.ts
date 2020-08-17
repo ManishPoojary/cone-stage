@@ -98,6 +98,8 @@ export class HttpService {
     );
   }
 
+ 
+
   categoryTypeCreate(CategoryTypes: CategoryTypes) {
     return this.http.post(
       `${environment.apiUrl}/category_types`,
@@ -138,4 +140,53 @@ export class HttpService {
   getCategoryById(id:string) {
     return this.http.get(`${environment.apiUrl}/category_types/${id}`);
   }
+
+  getAllCategoryEditor() {
+    return this.http.get<CategoryTypes[]>(
+      `${environment.apiUrl}/category_editor`
+    );
+  }
+
+  categoryEditorCreate(CategoryTypes: CategoryTypes) {
+    return this.http.post(
+      `${environment.apiUrl}/category_editor`,
+      CategoryTypes
+    );
+  }
+
+  categoryEditorUpdate(id, params) {
+    return this.http
+      .put(`${environment.apiUrl}/category_editor/${id}`, params)
+      .pipe(
+        map((x) => {
+          // update stored user if the logged in user updated their own record
+          if (id == this.userValue.id) {
+            // update local storage
+            const user = { ...this.userValue, ...params };
+            localStorage.setItem('user', JSON.stringify(user));
+
+            // publish updated user to subscribers
+            this.userSubject.next(user);
+          }
+          return x;
+        })
+      );
+  }
+
+  deleteEditorType(id) {
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: id,
+    };
+
+    return this.http.delete(`${environment.apiUrl}/category_editor`, options);
+  }
+
+  getCategoryEditorById(id:string) {
+    return this.http.get(`${environment.apiUrl}/category_editor/${id}`);
+  }
+
+  
 }

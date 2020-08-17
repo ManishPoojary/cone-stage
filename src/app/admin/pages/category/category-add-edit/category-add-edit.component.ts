@@ -4,17 +4,20 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService, AlertService } from '@app/admin/services';
 import { ToastrService } from 'ngx-toastr';
+
 @Component({
-  selector: 'app-category-type-add-edit',
-  templateUrl: './category-type-add-edit.component.html',
-  styleUrls: ['./category-type-add-edit.component.scss'],
+  selector: 'app-category-add-edit',
+  templateUrl: './category-add-edit.component.html',
+  styleUrls: ['./category-add-edit.component.scss'],
 })
-export class CategoryTypeAddEditComponent implements OnInit {
+export class CategoryAddEditComponent implements OnInit {
   form: FormGroup;
   id: string;
   isAddMode: boolean;
   loading = false;
   submitted = false;
+  categoryTypes = null;
+  selectedCategoryItem = null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -48,6 +51,22 @@ export class CategoryTypeAddEditComponent implements OnInit {
           this.f.name.setValue(x.category_type.name);
         });
     }
+    this.fetchAllCategoryTypes();
+  }
+
+  fetchAllCategoryTypes() {
+    this.httpService
+      .getAllCategoryTypes()
+      .pipe(first())
+      .subscribe((category: any) => {
+        this.categoryTypes = category.category_types;
+        console.log(category.category_types);
+      });
+  }
+
+  
+  getCategoryTypeId(id) {
+    console.log(id);
   }
 
   // convenience getter for easy access to form fields
@@ -76,7 +95,7 @@ export class CategoryTypeAddEditComponent implements OnInit {
 
   private createUser() {
     this.httpService
-      .categoryTypeCreate(this.form.value)
+      .categoryEditorCreate(this.form.value)
       .pipe(first())
       .subscribe(
         (data) => {
@@ -95,7 +114,7 @@ export class CategoryTypeAddEditComponent implements OnInit {
 
   private updateUser() {
     this.httpService
-      .categoryTypeUpdate(this.id, this.form.value)
+      .categoryEditorUpdate(this.id, this.form.value)
       .pipe(first())
       .subscribe(
         (data) => {
