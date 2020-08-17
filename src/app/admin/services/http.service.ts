@@ -173,7 +173,7 @@ export class HttpService {
       );
   }
 
-  deleteEditorType(id) {
+  deleteCategoryEditorType(id) {
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

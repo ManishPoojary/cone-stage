@@ -1,15 +1,17 @@
-<h1>Category Type</h1>
-<a routerLink="add" class="btn btn-sm btn-success mb-2">Add Category Type</a>
+<h1>Sub Category Type</h1>
+<a routerLink="add" class="btn btn-sm btn-success mb-2">Add Sub Category Type</a>
 <table class="table table-striped">
     <thead>
         <tr>
-            <th style="width: 90%">Category Type Name</th>
+            <th style="width: 15%">Category Name</th>
+            <th style="width: 55%">Category Type Name</th>
             <th style="width: 10%"></th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let user of users">
             <td>{{user.name}}</td>
+            <td>{{user.category_type_name}}</td>
             <td style="white-space: nowrap">
                 <a routerLink="edit/{{user.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>
                 <button (click)="deleteCategoryEditor(user.id)" class="btn btn-sm btn-danger btn-delete-user" [disabled]="user.isDeleting">

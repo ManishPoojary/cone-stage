@@ -1,12 +1,13 @@
-<h1 *ngIf="isAddMode">Add Category Type</h1>
-<h1 *ngIf="!isAddMode">Edit User</h1>
+<h1 *ngIf="isAddMode">Add Sub Category</h1>
+<h1 *ngIf="!isAddMode">Edit  Sub Category</h1>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="form-row">
         <div class="form-group col-3">
             <label for="exampleFormControlSelect1">Category Type</label>
-            <select class="form-control" id="exampleFormControlSelect1" (ngModel)="selectedCategoryItem"
-                (ngModelChange)="getCategoryTypeId(selectedCategoryItem)">
-                <option *ngFor="let item of categoryTypes">{{item.name}}</option>
+            <select formControlName="category_type_id" class="form-control" id="exampleFormControlSelect1"
+                [(ngModel)]="selectedCategoryItem">
+                <option [ngValue]="null" disabled>Choose Category Type</option>
+                <option *ngFor="let item of categoryTypes" [ngValue]="item.id">{{item.name}}</option>
             </select>
             <!-- <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" /> -->
             <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
@@ -14,19 +15,10 @@
             </div>
         </div>
     </div>
-    <!-- <div class="form-group">
-        <label for="exampleFormControlSelect2">Example multiple select</label>
-        <select multiple class="form-control" id="exampleFormControlSelect2">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </select>
-      </div> -->
+
     <div class="form-row">
         <div class="form-group col-3">
-            <label for="name">Category Name</label>
+            <label for="name">Sub Category Name</label>
             <input type="text" formControlName="name" class="form-control"
                 [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
             <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
@@ -40,6 +32,6 @@
             <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
             Save
         </button>
-        <a routerLink="/admin/category-type" class="btn btn-link">Cancel</a>
+        <a routerLink="/admin/category" class="btn btn-link">Cancel</a>
     </div>
 </form>

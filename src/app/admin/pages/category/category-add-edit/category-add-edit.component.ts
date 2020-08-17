@@ -39,16 +39,18 @@ export class CategoryAddEditComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
+      category_type_id: ['', Validators.required],
     });
 
     if (!this.isAddMode) {
       this.httpService
-        .getCategoryById(this.id)
+        .getCategoryEditorById(this.id)
         .pipe(first())
         .subscribe((x: any) => {
           console.log(x.category_type);
 
-          this.f.name.setValue(x.category_type.name);
+          this.f.name.setValue(x.category.name);
+          this.f.category_type_id.setValue(x.category.category_type_id);
         });
     }
     this.fetchAllCategoryTypes();
@@ -64,10 +66,6 @@ export class CategoryAddEditComponent implements OnInit {
       });
   }
 
-  
-  getCategoryTypeId(id) {
-    console.log(id);
-  }
 
   // convenience getter for easy access to form fields
   get f() {
@@ -87,21 +85,21 @@ export class CategoryAddEditComponent implements OnInit {
 
     this.loading = true;
     if (this.isAddMode) {
-      this.createUser();
+      this.createCategoryEditor();
     } else {
-      this.updateUser();
+      this.updateCategoryEditor();
     }
   }
 
-  private createUser() {
+  private createCategoryEditor() {
     this.httpService
       .categoryEditorCreate(this.form.value)
       .pipe(first())
       .subscribe(
         (data) => {
-          this.toastr.success('Success', 'Category Type added successfully');
+          this.toastr.success('Success', 'Category added successfully');
           // this.router.navigate(['/admin/category-type', { relativeTo: this.route }]);
-          this.router.navigate(['/admin/category-type']);
+          this.router.navigate(['/admin/category']);
         },
         (error) => {
           this.toastr.error('Alert', error.name);
@@ -112,14 +110,14 @@ export class CategoryAddEditComponent implements OnInit {
       );
   }
 
-  private updateUser() {
+  private updateCategoryEditor() {
     this.httpService
       .categoryEditorUpdate(this.id, this.form.value)
       .pipe(first())
       .subscribe(
         (data) => {
-          this.toastr.success('Success', 'Category Type updated successfully');
-          this.router.navigate(['/admin/category-type']);
+          this.toastr.success('Success', 'Category updated successfully');
+          this.router.navigate(['/admin/category']);
         },
         (error) => {
           this.toastr.error('Alert', error.name);

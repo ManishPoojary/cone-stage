@@ -22,7 +22,7 @@ export class CategoryListComponent implements OnInit {
       .getAllCategoryEditor()
       .pipe(first())
       .subscribe((users: any) => {
-        this.users = users.category_types;
+        this.users = users.categories;
         console.log(this.users);
       });
   }
@@ -34,7 +34,7 @@ export class CategoryListComponent implements OnInit {
       id: catId,
     };
     this.httpService
-      .deleteCategoryType(data)
+      .deleteCategoryEditorType(data)
       .pipe(first())
       .subscribe(() => {
         this.users = this.users.filter((x) => x.id !== catId);
