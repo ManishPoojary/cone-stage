@@ -21,9 +21,7 @@ export class HomeComponent implements OnInit {
     this.getBasicAnalytics();
   }
 
-  logoutUser() {
-    this.httpService.logout();
-  }
+  
 
   getBasicAnalytics() {
     this.httpService
