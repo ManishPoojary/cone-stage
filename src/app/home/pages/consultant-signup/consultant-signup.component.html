@@ -1,47 +1,91 @@
 <div class="siginup h-100">
-        <div class="col-lg-10 col-xl-9 mx-auto">
-            <div class="card card-signin flex-row my-5">
-                <div class="card-img-left d-none d-md-flex">
-                    <!-- Background image for card set in CSS! -->
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title text-center">Register</h5>
-                    <form class="form-signin">
-                        <div class="form-label-group">
-                            <input type="text" id="inputUserame" class="form-control" placeholder="Username" required
-                                autofocus>
-                            <label for="inputUserame">Username</label>
+    <div class="col-lg-10 col-xl-9 mx-auto">
+        <div class="card card-signin flex-row my-5">
+            <!-- <div class="card-img-left d-none d-md-flex">
+                </div> -->
+            <div class="card-body">
+                <h5 class="card-title text-center">Register</h5>
+                <form class="form-signin" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+                    <div class="form-row">
+                        <div class="form-label-group col">
+                            <input type="text" id="inputUsername" formControlName="username"
+                                [ngClass]="{ 'is-invalid': submitted && f.username.errors }" class="form-control"
+                                placeholder="Username" required>
+                            <label class="ml-1" for="inputUsername">Username</label>
+                            <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                                <div *ngIf="f.username.errors.required">User Name is required</div>
+                            </div>
                         </div>
-
-                        <div class="form-label-group">
-                            <input type="email" id="inputEmail" class="form-control" placeholder="Email address"
-                                required>
-                            <label for="inputEmail">Email address</label>
+                        <div class="form-label-group col">
+                            <input class="p-0" type="email" formControlName="email"
+                                [ngClass]="{ 'is-invalid': submitted && f.email.errors }" class="form-control"
+                                id="email" placeholder="Email" required>
+                            <label class="ml-1" for="email">Email Address</label>
+                            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                <div *ngIf="f.email.errors.required">First Name is required</div>
+                            </div>
                         </div>
-
-                        <hr>
-
-                        <div class="form-label-group">
-                            <input type="password" id="inputPassword" class="form-control" placeholder="Password"
-                                required>
-                            <label for="inputPassword">Password</label>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-label-group col">
+                            <input type="text" id="firstname" formControlName="firstname"
+                                [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }" class="form-control"
+                                placeholder="firstname" required>
+                            <label class="ml-1" for="firstname">First Name</label>
+                            <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+                                <div *ngIf="f.firstname.errors.required">First Name is required</div>
+                            </div>
                         </div>
-
-                        <div class="form-label-group">
-                            <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Password"
-                                required>
-                            <label for="inputConfirmPassword">Confirm password</label>
+                        <div class="form-label-group col">
+                            <input class="p-0" formControlName="lastname"
+                                [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }" type="text"
+                                class="form-control" id="lastname" placeholder="lastname" required>
+                            <label class="ml-1" for="lastname">Last Name</label>
+                            <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+                                <div *ngIf="f.lastname.errors.required">Last Name is required</div>
+                            </div>
                         </div>
+                    </div>
 
-                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
-                        <a class="d-block text-center mt-2 small" href="#">Sign In</a>
-                        <hr class="my-4">
-                        <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i
+                    <div class="form-group col-6 select-country mb-0">
+                        <label for="exampleFormControlSelect1"></label>
+                        <select class="form-control" formControlName="country"
+                            [ngClass]="{ 'is-invalid': submitted && f.country.errors }" id="exampleFormControlSelect1"
+                            required>
+                            <option value="" default>Select Country</option>
+                            <option *ngFor="let country of countryList">{{country}}</option>
+                        </select>
+
+                    </div>
+                    <div class="form-group ">
+                        <div *ngIf="submitted && f.country.errors" class="invalid-feedback d-block">
+                            <div *ngIf="f.country.errors.required">Country is required</div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-label-group">
+                        <tag-input [theme]="'bootstrap'" formControlName="interest" [(ngModel)]='interest'
+                            [secondaryPlaceholder]="'Enter your Interests'"></tag-input>
+                        <div *ngIf="submitted && f.interest.errors" class="invalid-feedback">
+                            <div *ngIf="f.interest.errors.required">interests is required</div>
+                        </div>
+                    </div>
+
+
+
+                    <button class="btn btn-lg btn-primary btn-block text-uppercase" [disabled]="loading" type="submit">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                        Register</button>
+                    <a class="d-block text-center mt-2 small" routerLink="/home/consultant-signin">Sign In</a>
+                    <!-- <hr class="my-4"> -->
+                    <!-- <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i
                                 class="fab fa-google mr-2"></i> Sign up with Google</button>
                         <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i
-                                class="fab fa-facebook-f mr-2"></i> Sign up with Facebook</button>
-                    </form>
-                </div>
+                                class="fab fa-facebook-f mr-2"></i> Sign up with Facebook</button> -->
+                </form>
             </div>
         </div>
+    </div>
 </div>

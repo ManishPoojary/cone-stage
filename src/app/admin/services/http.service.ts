@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
 import { User } from '../models';
+import { Consultant } from '../models';
 import { CategoryTypes } from '@app/admin/models';
 
 @Injectable({
@@ -44,7 +45,7 @@ export class HttpService {
     // remove user from local storage and set current user to null
     localStorage.removeItem('user');
     this.userSubject.next(null);
-    this.router.navigate(['admin/account/login']);
+    this.router.navigate(['/']);
   }
 
   register(user: User) {
@@ -186,6 +187,10 @@ export class HttpService {
 
   getCategoryEditorById(id:string) {
     return this.http.get(`${environment.apiUrl}/category_editor/${id}`);
+  }
+
+  registerConsultant(consultant: Consultant) {
+    return this.http.post(`${environment.apiUrl}/consultant`, consultant);
   }
 
   
