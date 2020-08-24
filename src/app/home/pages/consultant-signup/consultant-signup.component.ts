@@ -64,7 +64,7 @@ export class ConsultantSignupComponent implements OnInit {
           this.router.navigate(['/home/consultant-signin']);
         },
         (error) => {
-          this.toastr.error('Error', error.name);
+          this.toastr.error('Error', error.message);
           this.loading = false;
         }
       );
