@@ -47,16 +47,26 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-row">
+                        <div class="form-group col-6 select-country mb-0">
+                            <label for="exampleFormControlSelect1"></label>
+                            <select class="form-control" formControlName="country"
+                                [ngClass]="{ 'is-invalid': submitted && f.country.errors }"
+                                id="exampleFormControlSelect1" required>
+                                <option value="" default>Select Country</option>
+                                <option *ngFor="let country of countryList">{{country}}</option>
+                            </select>
 
-                    <div class="form-group col-6 select-country mb-0">
-                        <label for="exampleFormControlSelect1"></label>
-                        <select class="form-control" formControlName="country"
-                            [ngClass]="{ 'is-invalid': submitted && f.country.errors }" id="exampleFormControlSelect1"
-                            required>
-                            <option value="" default>Select Country</option>
-                            <option *ngFor="let country of countryList">{{country}}</option>
-                        </select>
-
+                        </div>
+                        <div class="form-label-group col">
+                            <input class="p-0" formControlName="password"
+                                [ngClass]="{ 'is-invalid': submitted && f.password.errors }" type="text"
+                                class="form-control" id="password" placeholder="password" required>
+                            <label class="ml-1" for="password">Password</label>
+                            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                <div *ngIf="f.password.errors.required">Password is required</div>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group ">
                         <div *ngIf="submitted && f.country.errors" class="invalid-feedback d-block">
@@ -66,7 +76,7 @@
 
 
                     <div class="form-label-group">
-                        <tag-input [theme]="'bootstrap'" formControlName="interest" [(ngModel)]='interest'
+                        <tag-input [theme]="'bootstrap'" formControlName="interest"
                             [secondaryPlaceholder]="'Enter your Interests'"></tag-input>
                         <div *ngIf="submitted && f.interest.errors" class="invalid-feedback">
                             <div *ngIf="f.interest.errors.required">interests is required</div>

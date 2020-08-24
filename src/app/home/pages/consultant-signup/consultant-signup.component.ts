@@ -33,7 +33,8 @@ export class ConsultantSignupComponent implements OnInit {
       email: ['', Validators.required],
       username: ['', Validators.required],
       country: ['', Validators.required],
-      interest: ['', Validators.required],
+      interest: [this.interest, Validators.required],
+      password: ['', Validators.required],
     });
   }
 
@@ -59,11 +60,11 @@ export class ConsultantSignupComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (data) => {
-          this.toastr.success('Registration successful')
+          this.toastr.success('Registration successful');
           this.router.navigate(['/home/consultant-signin']);
         },
         (error) => {
-          this.toastr.error('Error', error.name)
+          this.toastr.error('Error', error.name);
           this.loading = false;
         }
       );
