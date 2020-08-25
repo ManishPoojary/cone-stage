@@ -18,6 +18,7 @@
         <nav class="nav-menu d-none d-lg-block">
             <ul>
                 <li [ngClass]="{'active':active == 'home'}" (click)="clicked('home')"><a (click)="scrollToElement(hero)">Home</a></li>
+                <li [ngClass]="{'active':active == 'signin'}" (click)="clicked('signin')"><a routerLink="/home/consultant-signin">Sign in</a></li>
                 <li [ngClass]="{'active':active == 'about'}" (click)="clicked('about')"><a
                         (click)="scrollToElement(about)">About</a></li>
                 <li [ngClass]="{'active':active == 'features'}" (click)="clicked('features')"><a (click)="scrollToElement(features)">Features</a></li>

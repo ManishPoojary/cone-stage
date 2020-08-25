@@ -41,6 +41,20 @@ export class HttpService {
     );
   }
 
+  loginConsultant(value) {
+    console.log(value);
+
+    return this.http.post<User>(`${environment.apiUrl}/authenticate_consultant`, value).pipe(
+      map((user) => {
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        localStorage.setItem('user', JSON.stringify(user));
+        this.userSubject.next(user);
+        return user;
+        console.log(user);
+      })
+    );
+  }
+
   logout() {
     // remove user from local storage and set current user to null
     localStorage.removeItem('user');
@@ -99,8 +113,6 @@ export class HttpService {
     );
   }
 
- 
-
   categoryTypeCreate(CategoryTypes: CategoryTypes) {
     return this.http.post(
       `${environment.apiUrl}/category_types`,
@@ -138,7 +150,7 @@ export class HttpService {
     return this.http.delete(`${environment.apiUrl}/category_types`, options);
   }
 
-  getCategoryById(id:string) {
+  getCategoryById(id: string) {
     return this.http.get(`${environment.apiUrl}/category_types/${id}`);
   }
 
@@ -185,13 +197,11 @@ export class HttpService {
     return this.http.delete(`${environment.apiUrl}/category_editor`, options);
   }
 
-  getCategoryEditorById(id:string) {
+  getCategoryEditorById(id: string) {
     return this.http.get(`${environment.apiUrl}/category_editor/${id}`);
   }
 
   registerConsultant(consultant: Consultant) {
     return this.http.post(`${environment.apiUrl}/consultant`, consultant);
   }
-
-  
 }
