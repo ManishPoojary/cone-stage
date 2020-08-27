@@ -26,11 +26,11 @@ export class ListComponent implements OnInit {
       });
   }
 
-  deleteUser(id: string) {
+  deleteConsultant(id: string) {
     const user = this.users.find((x) => x.id === id);
     user.isDeleting = true;
     this.httpService
-      .delete(id)
+      .deleteConsultants(id)
       .pipe(first())
       .subscribe(() => {
         this.users = this.users.filter((x) => x.id !== id);

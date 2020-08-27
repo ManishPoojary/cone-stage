@@ -24,8 +24,8 @@ export class ConsultantLoginComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      email: ['varun@7621.com', Validators.required],
-      password: ['123', Validators.required],
+      email: ['manissh2327@gmail.com', Validators.required],
+      password: ['manish', Validators.required],
     });
 
     // get return url from route parameters or default to '/'

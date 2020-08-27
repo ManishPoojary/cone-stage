@@ -91,8 +91,8 @@ export class HttpService {
     );
   }
 
-  delete(id: string) {
-    return this.http.delete(`${environment.apiUrl}/users/${id}`).pipe(
+  deleteConsultants(id: string) {
+    return this.http.delete(`${environment.apiUrl}/consultant/${id}`).pipe(
       map((x) => {
         // auto logout if the logged in user deleted their own record
         if (id == this.userValue.id) {
