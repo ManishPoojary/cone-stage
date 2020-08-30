@@ -201,6 +201,10 @@ export class HttpService {
     return this.http.get(`${environment.apiUrl}/category_editor/${id}`);
   }
 
+  getConsultantCategory() {
+    return this.http.get(`${environment.apiUrl}/category_types/get_category_types`);
+  }
+
   registerConsultant(consultant: Consultant) {
     return this.http.post(`${environment.apiUrl}/consultant`, consultant);
   }

@@ -1,1 +1,13 @@
-<p>category-selection works!</p>
+<div class="container h-100">
+    <h4 class="display-4">category selection</h4>
+
+    <div class="row" style="height: 400px;">
+        <div class="col-6">
+            <form [formGroup]="myForm">
+                <ng-multiselect-dropdown name="name" [settings]="dropdownSettings" [placeholder]="'Select City'"
+                    [data]="cities" formControlName="name" [disabled]="disabled" (onSelect)="onItemSelect($event)">
+                </ng-multiselect-dropdown>
+            </form>
+        </div>
+    </div>
+</div>
