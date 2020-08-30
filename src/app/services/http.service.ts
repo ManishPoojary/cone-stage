@@ -4,9 +4,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { environment } from '../../../environments/environment';
-import { User } from '../models';
-import { Consultant } from '../models';
+import { environment } from '../../environments/environment';
+import { User } from '../admin/models';
+import { Consultant } from '../admin/models';
 import { CategoryTypes } from '@app/admin/models';
 
 @Injectable({
