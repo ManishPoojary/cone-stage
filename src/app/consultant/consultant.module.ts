@@ -6,9 +6,14 @@ import { ConsultantComponent } from './consultant.component';
 import { CategorySelectionComponent } from './pages/category-selection/category-selection.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { ConsultantHomeComponent } from './pages/consultant-home/consultant-home.component';
 
 @NgModule({
-  declarations: [ConsultantComponent, CategorySelectionComponent],
+  declarations: [
+    ConsultantComponent,
+    CategorySelectionComponent,
+    ConsultantHomeComponent,
+  ],
   imports: [
     CommonModule,
     ConsultantRoutingModule,

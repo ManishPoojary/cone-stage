@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ConsultantComponent } from './consultant.component';
 import { AuthGuard } from '@app/admin/helpers';
 import { CategorySelectionComponent } from './pages/category-selection/category-selection.component';
+import { ConsultantHomeComponent } from './pages/consultant-home/consultant-home.component';
 
 const routes: Routes = [
   {
@@ -12,7 +13,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path: 'category-selection',
+        path: '',
+        component: ConsultantHomeComponent,
+      },
+      {
+        path: 'category-selection/:id',
         component: CategorySelectionComponent,
       },
     ],

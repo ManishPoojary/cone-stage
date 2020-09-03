@@ -44,15 +44,17 @@ export class HttpService {
   loginConsultant(value) {
     console.log(value);
 
-    return this.http.post<User>(`${environment.apiUrl}/authenticate_consultant`, value).pipe(
-      map((user) => {
-        // store user details and jwt token in local storage to keep user logged in between page refreshes
-        localStorage.setItem('user', JSON.stringify(user));
-        this.userSubject.next(user);
-        return user;
-        console.log(user);
-      })
-    );
+    return this.http
+      .post<User>(`${environment.apiUrl}/authenticate_consultant`, value)
+      .pipe(
+        map((user) => {
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          localStorage.setItem('user', JSON.stringify(user));
+          this.userSubject.next(user);
+          return user;
+          console.log(user);
+        })
+      );
   }
 
   logout() {
@@ -202,10 +204,25 @@ export class HttpService {
   }
 
   getConsultantCategory() {
-    return this.http.get(`${environment.apiUrl}/category_types/get_category_types`);
+    return this.http.get(
+      `${environment.apiUrl}/category_types/get_category_types`
+    );
   }
 
   registerConsultant(consultant: Consultant) {
     return this.http.post(`${environment.apiUrl}/consultant`, consultant);
+  }
+
+  putConsultantCategory(id, params) {
+    return this.http.put(
+      `${environment.apiUrl}/consultant/consultant_categories?id=${id}`,
+      params
+    );
+  }
+
+  getSubCategoryBasedOnCategory(id) {
+    return this.http.get(
+      `${environment.apiUrl}/category_editor/get_categories_on_type?category_type_id=${id}`
+    );
   }
 }
