@@ -8,6 +8,7 @@ import { HttpService } from '@app/admin/services';
 })
 export class ConsultantHomeComponent implements OnInit {
   categories;
+  chatWindow: boolean = false;
   constructor(public httpService: HttpService) {}
 
   ngOnInit(): void {
@@ -19,5 +20,9 @@ export class ConsultantHomeComponent implements OnInit {
       console.log(data);
       this.categories = data.category_types;
     });
+  }
+
+  openChatBox() {
+    this.chatWindow = !this.chatWindow;
   }
 }
