@@ -1,0 +1,28 @@
+<div class="container h-100">
+    <h4 class="display-4">category selection</h4>
+
+    <div class="row">
+        <div class="col-6">
+            <form [formGroup]="myForm">
+                <ng-multiselect-dropdown name="name" [settings]="dropdownSettings" [placeholder]="'Select City'"
+                    [data]="categories" formControlName="categories" [disabled]="disabled" (onSelect)="onItemSelect($event)">
+                </ng-multiselect-dropdown>
+            </form>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-4">
+            <button class="btn btn-primary" (click)="saveCategory()">Save</button>
+        </div>
+    </div>
+
+    <h1 class="mt-5 display-5"></h1>
+
+    <ul class="list-group">
+        <li class="list-group-item active">My Categories</li>
+        <li class="list-group-item" *ngFor=" let item of myForm.value.categories">{{item.name}}</li>
+    </ul>
+
+
+</div>

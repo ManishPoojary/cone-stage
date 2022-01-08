@@ -1,39 +1,36 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  width: 100%;
+}
 
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
-@import '~@angular/material/theming';
-// Plus imports for other components in your app.
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
-@include mat-core();
+.app-container {
+  min-height: 320px;
+  overflow: hidden;
+}
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$cone-stage-primary: mat-palette($mat-indigo);
-$cone-stage-accent: mat-palette($mat-pink, A200, A100, A400);
+$gray-100: #f8f9fa;
+$gray-600: #868e96;
+$gray-800: #343a40;
 
-// The warn palette is optional (defaults to red).
-$cone-stage-warn: mat-palette($mat-red);
-
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
-$cone-stage-theme: mat-light-theme((
-  color: (
-    primary: $cone-stage-primary,
-    accent: $cone-stage-accent,
-    warn: $cone-stage-warn,
-  )
-));
-
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-@include angular-material-theme($cone-stage-theme);
-
-/* You can add global styles to this file, and also import other style files */
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+$red: #dc3545;
+$yellow: #ffc107;
+$primary: #33b5e5; // This is the only variable I wanted to change
+$cyan: #17a2b8;
+$theme-colors: (
+  primary: $primary,
+  secondary: $gray-600,
+  success: $primary,
+  info: $cyan,
+  warning: $yellow,
+  danger: $red,
+  light: $gray-100,
+  dark: $gray-800,
+);
+@import "bootstrap";
